@@ -20,7 +20,7 @@ For standard HA configurations, it is best to run repair once per week
 cluster.
 
 {{% alert title="Caution" color="warning" %}}
-The repair must only be executed on one node at a time. You must therefore adjust the repair schedule for each node in the cluster to avoid overlap.
+The repair must only be executed on one node at a time. You must therefore adjust the repair schedule for each node in the cluster to avoid overlap..
 {{% /alert %}}
 
 ### Schedule repair using crontab
