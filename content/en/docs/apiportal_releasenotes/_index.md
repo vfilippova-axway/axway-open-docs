@@ -1,4 +1,4 @@
-{"title":"Axway API Gateway 7.8 Developer Guide ","linkTitle":"Axway API Gateway 7.8 Developer Guide ","weight":"1","no_list":"true","date":"2019-08-07","description":""}
+{"title":"Axway API Gateway 7.8 Release notes","linkTitle":"Axway API Gateway Release notes","weight":"1","no_list":"true","date":"2019-08-07","description":""}
 
 Document version: d MMMM yyyy
 
@@ -81,30 +81,31 @@ Fixed issues
 
 ### Fixed security vulnerabilities
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Internal ID   Case ID    Description                                                                                                                                                   CVE ID
-  ------------- ---------- ------------------------------------------------------------------------------------------------------------------------------------------------------------- -----------
-                                                                                                                                                                                         
+**Internal ID**: IAP-1300
+**Case ID**: 00987204
+**Issue**: Documentation did not include best practices for securing Joomla!
+**Resolution**: API Management Security Guide is being updated to include best practices for securing Joomla!
+**CVE-ID**: 2018-6376
 
-  IAP-1300      00987204   **Issue**: Documentation did not include best practices for securing Joomla!\                                                                                 2018-6376
-                           **Resolution**: API Management Security Guide is being updated to include best practices for securing Joomla!                                                 
+IAP-1830
+**Case ID**: 01030372
+**Issue**: The description of the API was not escaped when using an external URL.
+**Resolution**: External URL description is escaped now.
 
-  IAP-1830      01030372   **Issue**: The description of the API was not escaped when using an external URL.\                                                                            
-                           **Resolution**: External URL description is escaped now.                                                                                                      
+IAP-1846
+**Case ID**: 01029705
+**Issue**: Sensitive information (for example, session headers, csrf token headers, and so on) is stored in curl.log file.\                                   
+**Resolution**: Sensitive information is masked (the real value is replaced with a fake value) when stored in curl.log file.                                  
 
-  IAP-1846      01029705   **Issue**: Sensitive information (for example, session headers, csrf token headers, and so on) is stored in curl.log file.\                                   
-                           **Resolution**: Sensitive information is masked (the real value is replaced with a fake value) when stored in curl.log file.                                  
-
-  IAP-1905                 **Issue**: When testing an API, malicious code inserted in some query parameters was executed, making API Portal vulnerable to cross-site scripting (XSS).\   
-                           **Resolution**: All query parameters are now escaped and malicious code is not executed.                                                                      
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+IAP-1905
+**Case ID**: NA
+**Issue**: When testing an API, malicious code inserted in some query parameters was executed, making API Portal vulnerable to cross-site scripting (XSS).\   
+**Resolution**: All query parameters are now escaped and malicious code is not executed.
 
 ### Other fixed issues
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Internal ID   Case ID              Description
-  ------------- -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                                     
+  ------------- -------------------- 
 
   IAP-911       00955815, 00940446   **Issue**: Documentation stated that PHP 5.4 and later are supported on RHEL7 software installation, but API Portal installation failed with PHP 7 due to missing dependencies.\
                                      **Resolution**: API Portal 7.7 RHEL7 software installation includes improved dependency checking, which resolves this issue.
