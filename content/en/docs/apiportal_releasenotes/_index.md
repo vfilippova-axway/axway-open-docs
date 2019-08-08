@@ -1,14 +1,14 @@
-{"title":"Axway API Gateway 7.8 Release notes","linkTitle":"Axway API Gateway Release notes","weight":"1","no_list":"true","date":"2019-08-07","description":""}
+{"title":"Axway API Gateway 7.8 Developer Guide ","linkTitle":"Axway API Gateway 7.8 Developer Guide ","date":"2019-08-08","description":"Document version: d MMMM yyyy"} ﻿
 
 Document version: d MMMM yyyy
 
-- [Summary](#Summary)
-- [New features and enhancements](#New)
-- [Limitations of this release](#Limitati)
-- [Fixed issues](#Fixed)
-- [Known issues](#Known)
-- [Documentation](#Doc)
-- [Support services](#Support)
+-   [Summary](#Summary)
+-   [](#New)[New features and enhancements](#New)
+-   [Limitations of this release](#Limitati)
+-   [Fixed issues](#Fixed)
+-   [Known issues](#Known)
+-   [Documentation](#Doc)
+-   [Support services](#Support)
 
 Summary
 -------
@@ -38,8 +38,8 @@ Enhanced privacy controls provide you with a configurable way to restrict the am
 
 Enables you to apply improved governance controls on user passwords. For example:
 
-- Enforce password changes at first login to API Portal
-- Set a password expiry interval to enforce how often users must change their password
+-   Enforce password changes at first login to API Portal
+-   Set a password expiry interval to enforce how often users must change their password
 
 API Portal applies the password policies configured in API Manager.
 
@@ -47,22 +47,22 @@ API Portal applies the password policies configured in API Manager.
 
 The following improvements have been made to the API Portal API Catalog and Application views to make it easier for your application developers to browse and consume your APIs.
 
-- New Application tab on API details page to enable app developers to create new applications quickly and directly without navigating away from the API details page.
-- API statuses (deprecated or unpublished) are now shown in the Application view to give app developers better information and help prevent accidental subscriptions to deprecated APIs.
-- New option to show summaries instead of descriptions for APIs to give the app developer a quicker summary view of what the API is about instead of a long description.
-- API versions are now shown in the Application view to give app developers better information when subscribing to APIs.
-- Monitoring information is not shown for applications or APIs from a connected API Manager with metrics disabled.
+-   New Application tab on API details page to enable app developers to create new applications quickly and directly without navigating away from the API details page.
+-   API statuses (deprecated or unpublished) are now shown in the Application view to give app developers better information and help prevent accidental subscriptions to deprecated APIs.
+-   New option to show summaries instead of descriptions for APIs to give the app developer a quicker summary view of what the API is about instead of a long description.
+-   API versions are now shown in the Application view to give app developers better information when subscribing to APIs.
+-   Monitoring information is not shown for applications or APIs from a connected API Manager with metrics disabled.
 
 ### Customization options
 
 To increase flexibility when customizing API Portal, the following new customization options are available.
 
-- View and update custom properties that are set and configured in API Manager, directly in API Portal.
-- Map users to roles after login, to control which parts of the Joomla! Administrator Interface (JAI) they can access. User role mapping enables you to expose different capabilities of the (JAI) to users, based on whether they are a standard user or an organization administrator, the organization they belong to, and even their email address.
-- Wildcard support for tags, so you can more easily control which APIs are displayed or hidden in your API catalogs.
-- Customize the default API Portal 404 error page.
-- Configure a consent message to be shown to users when logging in to API Portal.
-- Option to enforce users to supply an employer name when signing up.
+-   View and update custom properties that are set and configured in API Manager, directly in API Portal.
+-   Map users to roles after login, to control which parts of the Joomla! Administrator Interface (JAI) they can access. User role mapping enables you to expose different capabilities of the (JAI) to users, based on whether they are a standard user or an organization administrator, the organization they belong to, and even their email address.
+-   Wildcard support for tags, so you can more easily control which APIs are displayed or hidden in your API catalogs.
+-   Customize the default API Portal 404 error page.
+-   Configure a consent message to be shown to users when logging in to API Portal.
+-   Option to enforce users to supply an employer name when signing up.
 
 Using these standard customization options ensures a smooth upgrade process and will enable you to preserve your customizations when you upgrade to future API Portal releases.
 
@@ -71,41 +71,43 @@ Limitations of this release
 
 This release has the following limitations:
 
-- This release is not available as a virtual appliance, or as a managed service on Axway Cloud.
-- The ready-made API Portal Docker image is strictly for development environments only, and is not recommended for use in production environments. You must use the Dockerfile to build and run API Portal containers in production environments.
-- Upgrade to API Portal 7.8 is supported from API Portal 7.6.2 only. To upgrade from earlier versions, you must first upgrade to 7.6.2.
-- API Portal 7.8 is compatible with API Gateway and API Manager 7.8 only.
+-   This release is not available as a virtual appliance, or as a managed service on Axway Cloud.
+-   The ready-made API Portal Docker image is strictly for development environments only, and is not recommended for use in production environments. You must use the Dockerfile to build and run API Portal containers in production environments.
+
+<!-- -->
+
+-   Upgrade to API Portal 7.8 is supported from API Portal 7.6.2 only. To upgrade from earlier versions, you must first upgrade to 7.6.2.
+-   API Portal 7.8 is compatible with API Gateway and API Manager 7.8 only.
 
 Fixed issues
 ------------
 
 ### Fixed security vulnerabilities
 
-**Internal ID**: IAP-1300
-**Case ID**: 00987204
-**Issue**: Documentation did not include best practices for securing Joomla!
-**Resolution**: API Management Security Guide is being updated to include best practices for securing Joomla!
-**CVE-ID**: 2018-6376
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Internal ID   Case ID    Description                                                                                                                                                   CVE ID
+  ------------- ---------- ------------------------------------------------------------------------------------------------------------------------------------------------------------- -----------
+                                                                                                                                                                                         
 
-IAP-1830
-**Case ID**: 01030372
-**Issue**: The description of the API was not escaped when using an external URL.
-**Resolution**: External URL description is escaped now.
+  IAP-1300      00987204   **Issue**: Documentation did not include best practices for securing Joomla!\                                                                                 2018-6376
+                           **Resolution**: API Management Security Guide is being updated to include best practices for securing Joomla!                                                 
 
-IAP-1846
-**Case ID**: 01029705
-**Issue**: Sensitive information (for example, session headers, csrf token headers, and so on) is stored in curl.log file.\                                   
-**Resolution**: Sensitive information is masked (the real value is replaced with a fake value) when stored in curl.log file.                                  
+  IAP-1830      01030372   **Issue**: The description of the API was not escaped when using an external URL.\                                                                            
+                           **Resolution**: External URL description is escaped now.                                                                                                      
 
-IAP-1905
-**Case ID**: NA
-**Issue**: When testing an API, malicious code inserted in some query parameters was executed, making API Portal vulnerable to cross-site scripting (XSS).\   
-**Resolution**: All query parameters are now escaped and malicious code is not executed.
+  IAP-1846      01029705   **Issue**: Sensitive information (for example, session headers, csrf token headers, and so on) is stored in curl.log file.\                                   
+                           **Resolution**: Sensitive information is masked (the real value is replaced with a fake value) when stored in curl.log file.                                  
+
+  IAP-1905                 **Issue**: When testing an API, malicious code inserted in some query parameters was executed, making API Portal vulnerable to cross-site scripting (XSS).\   
+                           **Resolution**: All query parameters are now escaped and malicious code is not executed.                                                                      
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Other fixed issues
 
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Internal ID   Case ID              Description
-  ------------- -------------------- 
+  ------------- -------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                     
 
   IAP-911       00955815, 00940446   **Issue**: Documentation stated that PHP 5.4 and later are supported on RHEL7 software installation, but API Portal installation failed with PHP 7 due to missing dependencies.\
                                      **Resolution**: API Portal 7.7 RHEL7 software installation includes improved dependency checking, which resolves this issue.
@@ -214,12 +216,12 @@ The following are known issues in this version of API Portal.
 
 If you change the API Portal language to Arabic (or any other right to left language) there are issues with page layout and alignment on the API Portal Home and Pricing pages, and some buttons are not visible. As a workaround, you can turn on development mode in JAI. Follow these steps:
 
-1. Log in to Joomla! Admin Interface (JAI).
-1. In the JAI top navigation bar, click **Extensions &gt; Templates**.
-1. Click your template style (for example, `purity_III - Default`) to open it.
-1. Click the **General** tab.
-1. Change **Development Mode** to `ON`.
-1. Click **Save** and click **Close** to close the template style.
+1.  Log in to Joomla! Admin Interface (JAI).
+2.  In the JAI top navigation bar, click **Extensions > Templates**.
+3.  Click your template style (for example, `purity_III - Default`) to open it.
+4.  Click the **General** tab.
+5.  Change **Development Mode** to `ON`.
+6.  Click **Save** and click **Close** to close the template style.
 
 Related Issue: IAP-308
 
@@ -236,22 +238,17 @@ See [What's new in documentation](whats_new_doc_apiportal.htm) for a summary of 
 
 To find all available documents for this product version:
 
-1. Go to <https://docs.axway.com/bundle>.
-1. In the left pane Filters list, select your product or product version.
+1.  Go to <https://docs.axway.com/bundle>.
+2.  In the left pane Filters list, select your product or product version.
 
-Customers with active support contracts need to log in to access restricted content.
+{{< alert title="Note" color="primary" >}}Customers with active support contracts need to log in to access restricted content.{{< /alert >}}
 
 The AMPLIFY API Management solution enables you to create, publish, promote, and manage Application Programming Interfaces (APIs) in a secure and scalable environment. For more information, see the .
 
 The following reference documents are also available:
 
-[Supported Platforms](https://axway.zoominsoftware.io/bundle/Axway_Products_SupportedPlatforms_allOS_en)
-
-- Lists the different operating systems, databases, browsers, and thick client platforms supported by each Axway product.
-
-[Interoperability Matrix](https://axway.zoominsoftware.io/bundle/Axway_Products_InteroperabilityMatrix_allOS_en)
-
-- Provides product version and interoperability information for Axway products.  
+-   -   Lists the different operating systems, databases, browsers, and thick client platforms supported by each Axway product.
+-   -   Provides product version and interoperability information for Axway products.
 
 Support services
 ----------------
