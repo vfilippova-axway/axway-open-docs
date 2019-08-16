@@ -1,13 +1,10 @@
 ---
-title: "Write with Markdown"
-linkTitle: "Write with Markdown"
-weight: 1
-date: 2019-07-30
-description: >
+title: Write with Markdown
+date: 2019-07-30T00:00:00.000Z
+description: |
   Tips on writing and editing using Markdown.
 ---
-
-This docs-as-code implementation uses the [Hugo](https://gohugo.io/) static site generator and the Google [Docsy theme](https://www.docsy.dev/) to build this website from the Markdown content files. Hugo uses [Blackfriday](https://github.com/russross/blackfriday) to parse Markdown.
+This docs-as-code implementation uses the [Hugo](https://gohugo.io/) static site generator and the Google [Docsy theme](https://www.docsy.dev/) to build this website from the Markdown content files. Hugo uses [Blackfriday](https://github.com/russross/blackfriday) to parse Markdown..
 
 ## Editor recommendations
 
@@ -27,9 +24,8 @@ The Blackfriday Markdown parser has some known issues with nested lists. To avoi
 ### Code samples
 
 * Use 3 or more backticks to open and close a code sample block. You can specify a language after the first set of backticks to easily apply syntax highlighting.
-
     For example:
-
+  ````
         ```md
         # This is a H1
 
@@ -39,19 +35,17 @@ The Blackfriday Markdown parser has some known issues with nested lists. To avoi
 
         This is more text
         ```
-
+  ````
     Renders as:
+  ```md
+  # This is a H1
 
-    ```md
-    # This is a H1
+  This is some text
 
-    This is some text
+  ## This is a H2
 
-    ## This is a H2
-
-    This is more text
-    ```
-
+  This is more text
+  ```
 * Use single backticks to apply code or monospace formatting to `inline` text.
 
 {{% alert title="Caution" color="warning" %}}
@@ -70,7 +64,6 @@ Use an alert shortcode for any text that you want to draw attention to. For exam
 {{%/* alert title="Note" */%}}
 This is a note.
 {{%/* /alert */%}}
-
 ```
 
 Renders to:
@@ -80,7 +73,6 @@ This is a note.
 {{% /alert %}}
 
 See <https://www.docsy.dev/docs/adding-content/shortcodes/#alert> for more details.
-
 
 ### YouTube video links
 
