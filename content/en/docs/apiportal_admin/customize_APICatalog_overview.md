@@ -15,8 +15,9 @@ You can customize the following in the API Catalog view of API Portal:
 * Display APIs in a list or tile view.
 * Show or hide the button that enables users to download API definitions. The default is shown.
 * Show or hide the button that enables users to download client SDKs. The default is hidden.
-* Hide APIs associated with specified tags.
+* Hide tags from API Catalog.
 * Show only APIs associated with specified tags. For more details on tags, see Group APIs with tags.
+* Hide APIs associated with specified tags. For more details on tags, see Group APIs with tags.
 * Show or hide the button that enables users to try out an API. You can show the button for all users, for authenticated users only, or hide it completely. The default is shown for all users.
 * Display REST API details using the Swagger.io or AMPLIFY Swagger UI rendering tools. The default is AMPLIFY. SOAP APIs are always displayed using Swagger.io.
 * Show or hide Nickname column when using AMPLIFY rendering tool. The default is hidden.
@@ -73,9 +74,10 @@ To create a dedicated API Catalog for a subset of tagged APIs, do the following:
 
     To access all your API Catalogs under the **APIs** menu item rather than additional menu items, set **Parent Item** to **APIs**.
 
-7. On the **API Catalog** tab, in the **Only list APIs with tag**, enter the tags to include in this API Catalog.
-8. On the **Page Display** tab, change the page title and summary text if you want. For more details, see [Customize page title or summary](#customize-page-title-or-summary).
-9. Click **Save & Close**.
+7. On the **API Catalog** tab, in the **Show APIs with tags**, enter the tags to include in this API Catalog.
+8. On the **API Catalog** tab, in the **Do not show APIs with tags**, enter the tags to exclude in this API Catalog.
+9. On the **Page Display** tab, you can change the page title and summary text. For more details, see [Customize page title or summary](#customize-page-title-or-summary).
+10. Click **Save & Close**.
 
 Your themed API Catalog is now ready, and you can see it in your API Portal.
 
@@ -83,7 +85,7 @@ You can also choose to use some tags as an internal tool, and hide them from the
 
 ### Create tags with wildcards
 
-In both **Only list APIs with tag** and **Hide tags** options on **API Catalog** tab, you can add tags using the `*` and `+` wildcards. This is helpful to list only development APIs in one API Catalog and production APIs in another. In this case you can filter them using wildcards as follows: `*dev*` will list APIs which contain `dev` somewhere in the tag, for example, `financial_development` and `development` tags. Or, to hide all tags which start with `test` and end with any other letter, for example, `test` or `tests`, you can do `test+`.
+You can add tags using the `*` and `?` wildcards. This is helpful to list only development APIs in one API Catalog and production APIs in another. In this case you can filter them using wildcards as follows: `*dev*` will list APIs which contain `dev` somewhere in the tag, for example, `financial_development` and `development` tags. Or, to hide all tags which start with `test` and end with any other letter, for example, `test` or `tests`, you can do `test?`.
 
 ## Customize Try-it by type of request
 
