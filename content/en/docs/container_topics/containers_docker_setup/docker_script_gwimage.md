@@ -119,7 +119,7 @@ Follow these steps:
 
 The following are additional examples of using the `build_gw_image.py` script to build API Gateway Docker images.
 
-### Create an API Gateway image using defaults
+<!--### Create an API Gateway image using defaults
 
 The following example creates an API Gateway Docker image using default certificates and a default factory `fed`.
 
@@ -137,14 +137,14 @@ This example creates an API Gateway Docker image named `api-gateway-defaultgroup
 
 * Uses a default certificate and key (generated from running `./gen_domain_cert.py --default-cert`)
 * Uses a default factory `fed`
+-->
 
-### Create an API Manager image using defaults
+<!-- ### Create an API Manager image using defaults
 
 The following example creates an API Manager Docker image using default certificates and a default factory `fed` with samples.
 
 Do not use default options on production systems. The `--default-cert` and `--api-manager` options are provided only as a convenience for development environments.
-
-<!--comment to force code block to left margin-->
+ 
 ```
 cd emt_containers-<version>
 ./build_gw_image.py \
@@ -171,6 +171,7 @@ Use the `--merge-dir` option to specify the `apigateway` directory containing th
 
 * The merge directory must be called `apigateway` and must have the same directory structure as in an API Gateway installation.
 * Copy the JAR file to a new directory `/tmp/apigateway/ext/lib/` and specify `/tmp/apigateway` to the `--merge-dir` option.
+-->
 
 ### Create an API Gateway image using domain certificate
 
