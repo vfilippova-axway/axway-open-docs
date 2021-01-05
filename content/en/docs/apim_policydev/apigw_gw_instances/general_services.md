@@ -75,11 +75,11 @@ The following fields on the **Network** tab are common to both HTTP and HTTPS in
 * **Protocol**: Select the Internet Protocol version (IPv) that this interface uses. You can select `IPv4`, `IPv6`, or both of these protocol versions. The default is `IPv4`.
 * **Trace level**: The level of trace output. The possible values in order of least verbose to most verbose output are:
 
-    * `FATAL`
-    * `ERROR`
-    * `INFO`
-    * `DEBUG`
-    * `DATA`
+  * `FATAL`
+  * `ERROR`
+  * `INFO`
+  * `DEBUG`
+  * `DATA`
 
     The default trace level is read from the system settings.
 * **Enable interface**: This setting is enabled by default. If you want to disable the HTTP interface, deselect this setting.
@@ -143,17 +143,17 @@ You can configure the followingon the **Advanced (SSL)** tab:
 
     Following are some examples of cipher strings and their outcome:
 
-    * `FIPS:!SSLv3:!aNULL`: Enables FIPS-compatible TLSv1.2 ciphers and default TLS1.3 ciper suites (`TLS_AES_256_GCM_SHA384, TLS_CHACHA20_POLY1305_SHA256   TLS_AES_128_GCM_SHA256`).
-    * `FIPS:!SSLv3:!aNULL::TLS_AES_256_GCM_SHA384`: Enables FIPS-compatible TLSv1.2 ciphers and only one TLSv1.3 cipher suite (`TLS_AES_256_GCM_SHA384`).
-    * `FIPS:!SSLv3:!aNULL::`: Disables TLSv1.3 ciphers, only FIPS-compatible TLSv1.2 ciphers will be available.
-    * `ECDHE-ECDSA-AES256-SHA384::TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_CCM_8_SHA256`: Enables specific TLSv1.2 cipher (`ECDHE-ECDSA-AES256-SHA384`) and two specific TLSv1.3 cipher suite (`TLS_CHACHA20_POLY1305_SHA256` and `TLS_AES_128_CCM_8_SHA256`.
+  * `FIPS:!SSLv3:!aNULL`: Enables FIPS-compatible TLSv1.2 ciphers and default TLS1.3 ciper suites (`TLS_AES_256_GCM_SHA384, TLS_CHACHA20_POLY1305_SHA256   TLS_AES_128_GCM_SHA256`).
+  * `FIPS:!SSLv3:!aNULL::TLS_AES_256_GCM_SHA384`: Enables FIPS-compatible TLSv1.2 ciphers and only one TLSv1.3 cipher suite (`TLS_AES_256_GCM_SHA384`).
+  * `FIPS:!SSLv3:!aNULL::`: Disables TLSv1.3 ciphers, only FIPS-compatible TLSv1.2 ciphers will be available.
+  * `ECDHE-ECDSA-AES256-SHA384::TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_CCM_8_SHA256`: Enables specific TLSv1.2 cipher (`ECDHE-ECDSA-AES256-SHA384`) and two specific TLSv1.3 cipher suite (`TLS_CHACHA20_POLY1305_SHA256` and `TLS_AES_128_CCM_8_SHA256`.
 
     The default cipher string of `FIPS:!SSLv3:!aNULL` performs the following:
 
-    * Enables FIPS-compatible cipher suites only.
-    * Explicitly blocks cipher suites that require SSLv3 or lower.
-    * Forces the use of TLSv1.2 and TLSv1.3 protocols.
-    * Forbids unauthenticated cipher suites.
+  * Enables FIPS-compatible cipher suites only.
+  * Explicitly blocks cipher suites that require SSLv3 or lower.
+  * Forces the use of TLSv1.2 and TLSv1.3 protocols.
+  * Forbids unauthenticated cipher suites.
 
 For more information on the syntax of this setting, see the [OpenSSL documentation](https://www.openssl.org/docs/man1.1.1/man1/ciphers.html).
 
@@ -177,8 +177,8 @@ For more information on the syntax of this setting, see the [OpenSSL documentati
 
     There are two options when setting DH key parameters:
 
-    * Enter a number (for example, `512`), and the server automatically generates DH parameters with a prime number of the correct size.
-    * Paste the Base64 encoding of an existing serialized DH parameters file. You can use standard DH parameters based on known good prime numbers. OpenSSL ships with the `dh512.pem` and `dh1024.pem` files. For example, you can set the DH parameters to the following Base64-encoded string in `pdh512.pem`:
+  * Enter a number (for example, `512`), and the server automatically generates DH parameters with a prime number of the correct size.
+  * Paste the Base64 encoding of an existing serialized DH parameters file. You can use standard DH parameters based on known good prime numbers. OpenSSL ships with the `dh512.pem` and `dh1024.pem` files. For example, you can set the DH parameters to the following Base64-encoded string in `pdh512.pem`:
 
   ```
   -----BEGIN DH PARAMETERS-----
@@ -190,16 +190,15 @@ For more information on the syntax of this setting, see the [OpenSSL documentati
     The DH parameters setting is required if the server is using a DSA-keyed certificate, but also has an effect when using RSA-based certificates. DH (or similar) key agreement is required for DSA-based certificates because DSA keys cannot be trivially used to encrypt data like RSA keys can.
 
     {{< alert title="Note" color="primary" >}}The EDH key is always used once only to guarantee forward secrecy. This ensures that if the key is compromised, previous keys is not compromised.{{< /alert >}}
-
 * **SSL Protocol Options**: You can configure the following SSL protocol options:
 
-    * **Do not use the SSL v3 protocol**: SSL v3 is not used for incoming connections to avoid any weaknesses in this protocol. This is selected by default.
-    * **Do not use the TLS v1 protocol**: TLS v1.0 is not used for incoming connections to avoid any weaknesses in this protocol. This is selected by default.
-    * **Do not use the TLS v1.1 protocol**: TLS v1.1 is not used for incoming connections to avoid any weaknesses in this protocol. This is selected by default.
-    * **Do not use the TLS v1.2 protocol**: TLS v1.2 is not use for incoming connections to avoid any weaknesses in this protocol. This is *not* selected by default.
-    * **Do not use the TLS v1.3 protocol**: TLS v1.3 is not use for incoming connections to avoid any weaknesses in this protocol. This is *not* selected by default.
-    * **Prefer local cipher preferences over client's proposal**: When choosing a cipher during the SSL/TLS handshake, the client's preferences are selected by default from the list of ciphers supported by the client and the server. When this option is selected, the server's preferences are used instead. This option is *not* selected by default. For more details on ciphers, see the [OpenSSL documentation](https://www.openssl.org/docs/man1.1.1/man1/ciphers.html).
-    * **Disable renegotiation in TLSv1.2 and earlier**: Disable renegotiation, do not send HelloRequest messages, and ignore renegotiation requests via ClientHello. This is selected by default.
+  * **Do not use the SSL v3 protocol**: SSL v3 is not used for incoming connections to avoid any weaknesses in this protocol. This is selected by default.
+  * **Do not use the TLS v1 protocol**: TLS v1.0 is not used for incoming connections to avoid any weaknesses in this protocol. This is selected by default.
+  * **Do not use the TLS v1.1 protocol**: TLS v1.1 is not used for incoming connections to avoid any weaknesses in this protocol. This is selected by default.
+  * **Do not use the TLS v1.2 protocol**: TLS v1.2 is not use for incoming connections to avoid any weaknesses in this protocol. This is *not* selected by default.
+  * **Do not use the TLS v1.3 protocol**: TLS v1.3 is not use for incoming connections to avoid any weaknesses in this protocol. This is *not* selected by default.
+  * **Prefer local cipher preferences over client's proposal**: When choosing a cipher during the SSL/TLS handshake, the client's preferences are selected by default from the list of ciphers supported by the client and the server. When this option is selected, the server's preferences are used instead. This option is *not* selected by default. For more details on ciphers, see the [OpenSSL documentation](https://www.openssl.org/docs/man1.1.1/man1/ciphers.html).
+  * **Disable renegotiation in TLSv1.2 and earlier**: Disable renegotiation, do not send HelloRequest messages, and ignore renegotiation requests via ClientHello. This is selected by default. 
 
 ### Configure conditions for an HTTP Interface
 
@@ -320,7 +319,7 @@ The packet sniffer uses the `libpcap` library filter language to achieve this. T
 
 The following table lists a few examples of common filters and explains what they filter:
 
-| Filter expression                           | Description                                                                           |
+| Filter expression                            | Description                                                                           |
 | -------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `port 80`                                    | Capture only traffic for the HTTP Port (`80`).                                        |
 | `host 192.168.0.1`                           | Capture traffic to and from IP address `192.168.0.1`.                                 |
