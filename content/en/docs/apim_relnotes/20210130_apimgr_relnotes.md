@@ -20,7 +20,7 @@ The following new features and enhancements are available in this update.
 
 Now when you configure **HTTPS Interface** in the **Advanced (SSL)** tab you will be able to configure SSL renegotiation option using checkbox **'Disable renegotiation in TLSv1.2 and earlier'.** By default this options is enabled and it means that any renegotiation isn't allowed, listener doesn't send HelloRequest messages, and ignores renegotiation requests via ClientHello. If you disable this option and allow SSL renegotiation, only secure renegotiation will be possible.
 
-When you configure Routing **Connection Filte**r in the **SSL -> Advanced (SSL)** tab now you will be able to configure SSL renegotiation option using checkbox **'Disable renegotiation in TLSv1.2 and earlier'.** By default this options is enabled and it means that any renegotiation isn't allowed, client will not send renegotiation requests and server initiated renegotiation is denied. If you disable this option and allow SSL renegotiation, both secure and legacy insecure renegotiation with unpatched servers will be possible. 
+When you configure **Connection Filter** in the **SSL -> Advanced (SSL)** tab now you will be able to configure SSL renegotiation option using checkbox **'Disable renegotiation in TLSv1.2 and earlier'.** By default this options is enabled and it means that any renegotiation isn't allowed, client will not send renegotiation requests and server initiated renegotiation is denied. If you disable this option and allow SSL renegotiation, both secure and legacy insecure renegotiation with unpatched servers will be possible. 
 
 ## Important changes
 
