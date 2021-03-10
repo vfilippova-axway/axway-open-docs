@@ -277,6 +277,17 @@ The runtime validation works as follows:
 * Fail with `reason: unknown header`, if the JWT token has a crit header list specified and you did not configured any list for your JWT verify filter.
 * Fail with `reason: crit header cannot be empty`, if the JWT token has an empty “crit” header list.
 
+**Type & Content Type Claims**: You can add a list of acceptable "typ" headers and a list of acceptable "cty" headers. The headers will be validated against the "typ" and "cty" header values present in the JWT being processed.
+
+The list of acceptable headers for either "typ" or "cty" must entirely match an incoming JWT header value. For example, an incoming token with a content type `json` will not match an `application/json` string in the accepted list.
+
+The runtime validation works as follows:
+
+* Successful, if the "typ" or "cty" value of the incoming JWT matches a value on the accepted lists.
+* Successful, if the acceptable "typ" or "cty" lists are empty.
+* Fail with `reason: unknown header`, if the "typ" or "cty" value of the incoming JWT is not present in the accepted list.
+* Fail with `reason: typ/cty header cannot be empty`, if the "typ" or "cty" value of the incoming JWT is empty, and a list is provided.
+
 **Claims**: You can select a policy that allows you to validate a claim. If a JWT Header claim policy is defined, the validation of the claim works as follows:
 
 * Successful: The policy will be invoked and displayed in the policy execution path, in [Traffic monitor](/docs/apim_reference/monitor_traffic_events_metrics/).
