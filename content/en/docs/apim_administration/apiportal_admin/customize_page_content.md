@@ -6,6 +6,7 @@ date: 2019-07-30T00:00:00.000Z
 description: Customize other features of your API Portal, such as sign up,
   login, and application settings.
 ---
+
 ## Add reCaptcha to sign up
 
 You can customize your sign up functionality by enabling reCaptcha
@@ -208,6 +209,18 @@ User sessions that remain active for extended periods of time are exposed to att
 2. Click **Save**.
 
 Since the session is destroyed after the specified period of time, the potential footprint of the session is eliminated, which helps to minimize attacks.
+
+## Chat support
+
+You can configure your API Portal to show an Intercom chat support. After you enable this module, by default, all users will be able to see the Chat, even users not logged to the portal.
+
+To start using Intercom Chat:
+
+1. In JAI, click **Extensions > Modules > Intercom**.
+2. Enter your `Application Id` taken from Intercom.
+3. To enable the chat only for logged users, select `No` from `Show chat for non-logged in users`.
+
+After you configure this module, the Intercom chat icon is displayed on all pages of your API Portal.
 
 ## Show notifications for applications that are waiting for approval
 
