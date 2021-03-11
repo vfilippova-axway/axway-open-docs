@@ -6,7 +6,6 @@ date: 2019-07-30T00:00:00.000Z
 description: Customize other features of your API Portal, such as sign up,
   login, and application settings.
 ---
-
 ## Add reCaptcha to sign up
 
 You can customize your sign up functionality by enabling reCaptcha
@@ -228,8 +227,10 @@ When the auto-approve setting is disabled, users can't use their newly-created a
 
 To remind the Org admin that there are applications waiting for approval, API Portal displays a notification with a link to the list of pending approval applications every time that the Org admin logs in to API Portal.
 
-To disabled the notification:
+To disable this notification:
 
 1. In JAI, click **Components > API Portal > Additional settings**.
 2. Choose **No** for the **Show notifications for applications that are pending approval** field.
 3. Click **Save**.
+
+{{< alert title="Note" color="primary" >}}The notification is not shown when **Delegate application management** option in API Manager settings is disabled because in that case, Org admins cannot manage applications or approve application requests.{{< /alert >}}
