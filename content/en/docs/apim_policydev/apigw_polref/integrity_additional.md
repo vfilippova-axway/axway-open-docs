@@ -236,6 +236,35 @@ You can configure the following settings on the **JWT Verify** dialog:
 
 **Token location**: Enter the selector expression to retrieve the JWT to be verified. This must contain the value of token in the format of `HEADER.PAYLOAD.SIGNATURE`, but without the `Bearer` prefix. You can use a filter, such as [Retrieve attribute from HTTP header](/docs/apim_policydev/apigw_polref/attributes_retrieve/#retrieve-from-http-header-filter), in your policy to get the token from any header. For example: `${http.headers["Authorization"].substring(7)}`
 
+### Key and Algorithm
+
+On the **Key and Algorithm** tab you can configure the location of the verification key, which validates the JWS token. You can choose one of these two options for selecting the key, **Call Policy to discover key** or **Select static key or selector**.
+
+#### Call policy to discover key
+
+Use this option to select a policy to find the appropriate key to verify a JWS Token.
+
+You must ensure that the key in the selected policy follows these two requirements:
+
+* It is either in JWK (a single JWK or a JWK set) or PEM (a PEM encoded X.509 certificate or an RSA Public key) format. You can select one of each, or both options.
+* It is placed in the `content.body` message attribute.
+
+If no key is returned or the key is not in the correct format, the filter will fail. If the key cannot verify the JWS signature, the filter will fail.
+
+Before the policy is called, two message attributes are created containing the JWS header and payload, `jws.header` and `jws.payload`, respectively. You can use these attributes in the discovery policy to locate the correct key.
+
+For example, you can use:
+
+* `${jws.header.jku}` with the [Connect to URL](/docs/apim_policydev/apigw_polref/routing_common/#connect-to-url-filter) filter to retrieve a JWK from an external source.
+* `${jws.header.x5u}` to retrieve a PEM encoded certificate from an external source.
+* `${jws.payload}` to identify the subject of the JWS, and retrieve a key from a data source, such as the KPS.
+
+Other useful headers for identifying the key are: `${jws.header.kid}` and `${jws.header.jwk}`.
+
+#### Select static key or selector
+
+This option allows you to directly specify a certificate for asymmetric keys, a shared secret for HMAC base JWS tokens, or a JWK. Each of these options can be explicitly enabled or disabled. At runtime, the filter will identify the appropriate key based on the algorithm in the token header. If an asymmetric or symmetric key is not available, the filter will use the JWK.
+
 You can configure the following optional settings in the **Verify using RSA/EC public key** section:
 
 **X509 certificate**: Select the certificate that is used to verify the payload from the certificate store.
@@ -259,7 +288,9 @@ You can configure the following optional setting in the **JWK from external sour
 
 **JSON web key**: You can verify signed tokens using a selector expression containing the value of a `JSON Web Key (JWK)`. The return type of the selector expression must be of type String.
 
-**Accepted Algorithms**: This list is populated with all the algorithms available for JWT signing, and it requires at least one algorithm to be selected. The selected algorithms will be validated against the "alg" header of the JWT token being processed. If none are selected, the following message is displayed, **You must enter a value for 'Accepted Algorithms'.**
+#### Algorithms
+
+This option shows a list of **Accepted Algorithms**, which is populated with all the algorithms available for JWT signing. It requires that at least one algorithm is selected. The selected algorithms will be validated against the "alg" header of the JWT token being processed. If none are selected, the following message is displayed, **You must enter a value for 'Accepted Algorithms'.**
 
 The runtime validation works as follows:
 
