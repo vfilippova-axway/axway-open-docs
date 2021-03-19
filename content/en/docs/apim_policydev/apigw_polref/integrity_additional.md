@@ -121,7 +121,7 @@ This tab configures which claims are present in the JWT header.
 
 For more information on each header, see [JWS RFC 7515](https://tools.ietf.org/html/rfc7515#section-4).
 
-Enabling all of the settings will produce a header with the following structure:
+Enabling all of the settings produces a header with the following structure:
 
 ```
 {
@@ -299,22 +299,6 @@ The runtime validation works as follows:
 * Fail with `reason: The JWS token is not correct`, if there is no "alg" value in the incoming JWT.
 * Fail with `reason: Alg received not supported in the 'Accepted Algorithms' list defined in the JWT verification filter`, if the "alg" value of the incoming JWT is not selected from the list of accepted algorithms.
 
-**Detached Signature**: The format of a detached JWS is `<header>..<signature>`. When a JWS is in a detached format, its payload is omitted from the JWS and it is sent separately. The payload missing from the JWS must be added to the Message via a selector expression, which is typically a `${content.body}`, but it is configurable in the filter.
-
-The detached signature is disabled by default in the JWT Verify filter. To enable it, select **Support detached payload** and specify the location of the payload, which defaults to `${content.body}`.
-
-The validation of the detached signature works as follows:
-
-* When detached signatures are enabled and a JWS token with a detached signature is processed at runtime, the filter will:
-    * pass, if the correct payload can be found in the location specified.
-    * fail, if the correct payload cannot be found in the location specified.
-* When detached signatures are disabled and a JWS token with a detached signature is processed at runtime, the filter will fail.
-* When detached signatures are either enabled or disabled, and a compact JWS token is processed at runtime, the filter will pass if the token is correct.
-
-For more information about detached JWS, see [Appendix F of JWS RFC 7515](https://tools.ietf.org/html/rfc7515#appendix-F).
-
-{{< alert title="Note" color="primary" >}}When using detached signatures, the detached payload must not be base64 encoded. You must add a `"b64: false"` header claim to the JWS token to enforce this behavior. See [JWS Unencoded Payload Option RFC 7797](https://tools.ietf.org/html/rfc7797) for more information.{{< /alert >}}
-
 **Critical Headers**: You can add a list of acceptable “crit” headers (list of JWT claims), which will be validated against the list of claims present in the “crit” header of the JWT token being processed. The validation works as follows:
 
 * Successful, if all claims present in the “crit” header list of the JWT token match the lists you have configured.
@@ -337,6 +321,28 @@ The runtime validation works as follows:
 
 * Successful: The policy will be invoked and displayed in the policy execution path, in [Traffic monitor](/docs/apim_reference/monitor_traffic_events_metrics/).
 * Fail: The failure path from the JWT Verify filter is executed.
+
+### Advanced
+
+You can configure the following settings in this tab:
+
+**Detached Signature**: The format of a detached JWS is `<header>..<signature>`. When a JWS is in a detached format, its payload is omitted from the JWS and it is sent separately. The payload missing from the JWS must be added to the Message via a selector expression, which is typically a `${content.body}`, but it is configurable in the filter.
+
+The detached signature is disabled by default in the JWT Verify filter. To enable it, select **Support detached payload** and specify the location of the payload, which defaults to `${content.body}`.
+
+The validation of the detached signature works as follows:
+
+* When detached signatures are enabled and a JWS token with a detached signature is processed at runtime, the filter will:
+    * pass, if the correct payload can be found in the location specified.
+    * fail, if the correct payload cannot be found in the location specified.
+* When detached signatures are disabled and a JWS token with a detached signature is processed at runtime, the filter will fail.
+* When detached signatures are either enabled or disabled, and a compact JWS token is processed at runtime, the filter will pass if the token is correct.
+
+For more information about detached JWS, see [Appendix F of JWS RFC 7515](https://tools.ietf.org/html/rfc7515#appendix-F).
+
+{{< alert title="Note" color="primary" >}}When using detached signatures, the detached payload must not be base64 encoded. You must add a `"b64: false"` header claim to the JWS token to enforce this behavior. See [JWS Unencoded Payload Option RFC 7797](https://tools.ietf.org/html/rfc7797) for more information.{{< /alert >}}
+
+**Payload claim validation policy**: Select a policy to perform additional validation of the token payload. The payload value is made available to the policy via the `${jwt.body}` message attribute, which is created based on the value of the "cty" header claim.
 
 ### Additional JWT verification steps
 
