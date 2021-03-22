@@ -32,7 +32,7 @@ To enable API Manager, perform the following steps:
 7. After deployment completes, enter the following URL in your browser to log in to apimanager: `https://HOSTNAME:8075`
 8. Log in using the API administrator credentials that you specified when installing API Manager, or when configuring API Manager in Policy Studio. For security reasons, you must change the default credentials.
 
-{{< alert title="Note" color="primary" >}}In earlier versions, API Manager was configured using the `setup-apimanager` script in the `INSTALL_DIR/apigateway/posix/bin` directory. This script is still supported for backwards compatibility, but it is best to use Policy Studio to configure API Manager in this version. Cassandra must be installed and running before you run the `setup-apimanager` script. For more details, run the script with the `--help` option. {{< /alert >}}
+{{< alert title="Note" color="primary" >}}In earlier versions, API Manager was configured using the `setup-apimanager` script in the `INSTALL_DIR/apigateway/posix/bin` directory. This script is still supported for backwards compatibility, but we recommend you to use Policy Studio to configure API Manager in this version. Cassandra must be installed and running before you run the `setup-apimanager` script. For more details, run the script with the `--help` option. {{< /alert >}}
 
 ## Configure signed certificates for API Manager ports
 
@@ -102,16 +102,19 @@ For details on configuring API Manager for a large amount of APIs and data in a 
 
 Rate limit monitors the number of requests that a user can send to API Manager during an active session. If the number of requests in an individual session exceeds the configured boundaries, the session is terminated, and the user must log in again to continue using API Manager.
 
-To configure the request rate limiter for your user' sessions in API Manager, perform the following steps in Policy Studio:
+To configure the request rate limiter for your user's sessions in API Manager, perform the following steps in Policy Studio:
 
 1. Select **Environment Configuration > Listeners > API Gateway > API Portal > Paths** in the Policy Studio tree.
 2. Double-click the `API Portal v1.4 ('v1.4')` servlet to open its dialog box.
 3. On the servlet dialog box, click to **Edit** the `jersey.config.server.provider.classnames` property.
 4. Add `com.vordel.apiportal.api.filter.RateLimitBindingFeature` to the existing comma-separated list of class names.
 5. Click to **Add** two new properties to the **Servlet Properties** list :
-    * **Name**: `RateLimitFilter.rateLimitSize`. **Value**: Enter the number of requests a user can make in a period of time. Defaults to `200`.
-    * **Name**: `RateLimitFilter.rateLimitOffset`. **Value**: Enter the amount of time, in milliseconds, that the request rate limiter should allow between the user’s most recent request and the configured number of requests. Defaults to `60000` milliseconds (`1` minute).
+
+   * **Name**: `RateLimitFilter.rateLimitSize`. **Value**: Enter the number of requests a user can make in a period of time. Defaults to `200`.
+   * **Name**: `RateLimitFilter.rateLimitOffset`. **Value**: Enter the amount of time, in milliseconds, that the request rate limiter should allow between the user’s most recent request and the configured number of requests. Defaults to `60000` milliseconds (`1` minute).
 6. Click **OK**.
 
 {{< alert title="Note" color="primary" >}}A user login to API Manager generates multiple requests. Therefore, it is recommended to set `RateLimitFilter.rateLimitSize` to higher than `50` at a minimum.
+
+Customers with a large number of entities will also generate large volumes of API Manager requests and should, therefore, consider increasing the default value for `RateLimitFilter.rateLimitSize.`
 {{< /alert >}}
