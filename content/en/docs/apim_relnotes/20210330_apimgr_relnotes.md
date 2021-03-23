@@ -79,7 +79,9 @@ This version of API Gateway and API Manager includes:
 
 ### Fixed security vulnerabilities
 
-table of security issues
+| Internal ID | Case ID            | Cve Identifier                               | Description                                                                                                                                                                                                                                                                                                 |
+| ----------- | ------------------ | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RDAPI-23337 | | CVE-2018-1320 CVE-2019-0205 | **Issue**: Apache Cassandra includes libthrift library which has known vulnerabilities. **Resolution**: New installations which opt to install Cassandra from the API Gateway installation packages will include the upgraded libthrift 0.9.3-1 library that addresses these two known vulnerabilities. Existing customers are advised to upgrade the libthrift library to 0.9.3-1 in their Cassandra environments.                                                                                                         |
 
 ### Other fixed issues
 
