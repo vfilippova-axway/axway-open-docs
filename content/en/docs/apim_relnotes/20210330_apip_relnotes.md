@@ -19,23 +19,20 @@ API Portal is available as a software installation or a virtualized deployment i
 
 ## New features and enhancements
 
-### placeholder 1
+### Unattended mode enhanced to use a configuration file for parameters
 
-placeholder text
+API Portal unattended mode can use up to 24 parameters, all of which must be specified on the command line. From this update, this was made easier. You can specify the parameters in a configuration file by using the `--optionfile` parameter with API Portal `install` and `uninstall` scripts. For more information, see [Unattended installation](/docs/apim_installation/apiportal_install/install_unattended/).
 
-For more information, see:
+You can also watch [How to use a configuration file for simpler installations (unattended mode)](https://youtu.be/HqQ77Cj2s5E) demo video on Axway API Management YouTube chanel.
 
-* [some reference 1](/docs/placeholder)
-* [some reference 2](/docs/placeholder)
+### Further Enhancements
 
-### placeholder 2
-
-placeholder text
-
-For more information, see:
-
-* [some reference 1](/docs/placeholder)
-* [some reference 2](/docs/placeholder)
+* New module allowing easy integration with Intercom to enable chat support on API Portal.
+* Microsoft Edge browser is now supported.
+* New Axway icons, color palettes, and typography incorporated.
+* The name of the relevant API Manager instance is now displayed on the **API catalog** (on Grid and List view layouts) and in the **API details** page.
+* A new notification has been added to alert the organization administrator on login to review applications that are pending approval.
+* Labels and values for custom properties are now translatable.
 
 ## Limitations of this update
 
@@ -50,7 +47,7 @@ This update has the following limitations:
 
 <!-- It is important, especially when upgrading from an earlier version, to be aware of the following changes in the behavior or operation of the product in this update.. -->
 
-There are no major changes in this update.
+* Internet Explorer 11 and earlier versions are no longer supported. Microsoft Edge is recommended.
 
 ## Deprecated features
 
