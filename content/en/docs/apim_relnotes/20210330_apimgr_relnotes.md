@@ -22,6 +22,12 @@ A “crit” header was added to the JWT Verify filter in Policy Studio. This al
 
 For more information, see [JWT verify filter](/docs/apim_policydev/apigw_polref/integrity_additional/#jwtverify-filter).
 
+### Automatic upgrade of projects in Policy Studio
+
+After applying [API Gateway One Version](/docs/apim_installation/apigw_upgrade/upgrade_steps_oneversion/) update to Policy Studio, opening a pre-existing project will now offer to automatically upgrade the project.
+
+For more information, see [Upgrade of project after 7.7 One Version update](/docs/apim_policydev/apigw_poldev/gs_project/#upgrade-of-project-after-77-one-version-update).
+
 ### API Manager request rate limiter
 
 Rate limit monitors the number of requests that a user can send to API Manager during an active session. If the number of requests in an individual session exceeds the configured boundaries, the session is terminated and the user must log in again to continue using API Manager.
