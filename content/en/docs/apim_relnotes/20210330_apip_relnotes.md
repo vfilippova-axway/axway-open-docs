@@ -16,6 +16,9 @@ API Portal is available as a software installation or a virtualized deployment i
 * If you are already using API Portal (7.5.x, 7.6.x, 7.7.x) and want to install this update, see [Upgrade API Portal](/docs/apim_installation/apiportal_install/upgrade_automatic/).
 * You can use the [cumulative upgrade script](/docs/apim_installation/apiportal_install/upgrade_automatic/#upgrade-api-portal-using-the-cumulative-upgrade-script) to upgrade directly from earlier versions (for example, 7.5.5, 7.6.2) to API Portal [7.7 November](/docs/apim_relnotes/20201130_apip_relnotes/), then apply this update package to update your API Portal to the March 21 release.
 * See [API Portal single version upgrade](/docs/apim_installation/apiportal_install/upgrade_automatic/#upgrade-from-api-portal-7-6-2) to upgrade versions incrementally.
+
+### Docker containers
+
 * To deploy API Portal in Docker containers, see [Deploy API Portal in containers](/docs/apim_installation/apiportal_docker/docker_portal_upgrade/)
 * If you are already using API Portal in Docker containers and you want to install this update, see [Upgrade API Portal in Docker containers](/docs/apim_installation/apiportal_docker/docker_portal_upgrade/)
 
@@ -29,12 +32,12 @@ You can also watch [How to use a configuration file for simpler installations (u
 
 ### Further Enhancements
 
-* New module allowing easy integration with Intercom to enable chat support on API Portal.
+* New module allowing easy integration with Intercom to [enable chat support on API Portal](/docs/apim_administration/apiportal_admin/customize_page_content/#chat-support).
 * Microsoft Edge browser is now supported.
 * New Axway icons, color palettes, and typography incorporated.
 * The name of the relevant API Manager instance is now displayed on the **API catalog** (on Grid and List view layouts) and in the **API details** page.
-* A new notification has been added to alert the organization administrator on login to review applications that are pending approval.
-* Labels and values for custom properties are now translatable.
+* A [new notification](/docs/apim_administration/apiportal_admin/customize_page_content/#show-notifications-for-applications-that-are-waiting-for-approval) has been added to alert the organization administrator on login to review applications that are pending approval.
+* Labels and values for custom properties are now [translatable](/docs/apim_administration/apiportal_admin/localize_language/#add-a-translated-ui-string-file).
 
 ## Limitations of this update
 
@@ -75,18 +78,19 @@ This version of API Portal includes:
 | ----------- | ------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | IAP-4003    |         |                | **Issue**: Swagger IO is using vulnerable version of marked library. **Resolution**: Marked library is upgraded to a safer version. |
 | IAP-3842    |         |                | **Issue**: API Portal is using vulnerable version of Axios library. **Resolution**: Axios library is upgraded to a safer version.   |
+| IAP-4077 | | | **Issue**: PHP version in Ready Made Docker image was 7.4.14, which was vulnerable when using SOAP extension for connecting to a SOAP server. **Resolution**: PHP version in Ready Made Docker image was upgraded to 7.4.16. |
 
 ### Other fixed issues
 
 | Internal ID | Case ID | Description                                                                                                                                                                                                                                                                                   |
 | ----------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| IAP-2927    |         | **Issue**: `Custom` properties of type different than `custom` are showing the value. **Resolution**: The labels were showing for `Custom` properties of type different than `custom`.                                                                                                               |
 | IAP-3858    |         | **Issue**: User doesn't get redirected to the "redirect after login" after accepting privacy policy. **Resolution**: User gets redirected to the "redirect after login" after accepting privacy policy.                                                                                       |
 | IAP-3940    | 1228612 | **Issue**: API description is not shown on API Catalog. **Resolution**: API summary is shown as description by default.                                                                                                                                                                       |
 | IAP-3949    | 1229842 | **Issue**: When hide tags from API Catalog page is enabled, they are not hidden in create and edit application pages. **Resolution**: New configuration is added for applications which allows to hide tags from applications pages.                                                                        |
 | IAP-4000    |         | **Issue**: While creating application from an API Details page, the user can see a list of all available organizations, to some of which the API is not connected. **Resolution**: When an application is being created from an API, the user see a list of the organizations to which the API is assigned. |
 | IAP-4002    | 1231371 | **Issue**: The documentation was not clear on what resources are recommended for use for Docker artifacts released before November. **Resolution**: All documentation sections have been updated to link to the latest docker artifacts recommended for production.                                  |
 | IAP-4033    |         | **Issue**: Redirect after login option in JAI is not working when multiple languages are installed. **Resolution**: Redirect after login option in JAI works for multiple-languages API Portal instances.                                                                                     |
+| IAP-4054 | 01229501 | **Issue**: HEAD method is allowed for the request that validates the registration. **Resolution**: Only GET method is allowed for the request that validates the registration. |
 | IAP-4055    | 1232846 | **Issue**: PHP CLI version is checked from the context of the user who is running the installation while it's used in the context of the Apache user. **Resolution**: Run `updatescript.php` by the user who is doing the installation.                                                         |
 
 ## Known issues
