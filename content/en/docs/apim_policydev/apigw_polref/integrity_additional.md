@@ -348,7 +348,7 @@ For more information about detached JWS, see [Appendix F of JWS RFC 7515](https:
 
 {{< alert title="Note" color="primary" >}}When using detached signatures, the detached payload must not be base64 encoded. You must add a `"b64: false"` header claim to the JWS token to enforce this behavior. See [JWS Unencoded Payload Option RFC 7797](https://tools.ietf.org/html/rfc7797) for more information.{{< /alert >}}
 
-**Payload claim validation policy**: Select a policy to perform additional validation of the token payload. The payload value is made available to the policy via the `${jwt.body}` message attribute.
+**Payload claim validation policy**: Select a policy to perform additional validation of the token payload. The payload value is made available to the policy via the `${jwt.body}` message attribute. In case of **detached signature** the `${jwt.body}` is not created and attribute with the location of payload, which defaults to `${content.body}`, should be used in **payload claim validation policy**.
 
 ### Additional JWT verification steps
 
