@@ -300,7 +300,9 @@ The runtime validation works as follows:
 * Fail with `reason: Alg received not supported in the 'Accepted Algorithms' list defined in the JWT verification filter`, if the "alg" value of the incoming JWT is not selected from the list of accepted algorithms.
 
 ### Header Validation
+
 #### Critical Headers
+
 You can add a list of acceptable “crit” headers (list of JWT claims), which will be validated against the list of claims present in the “crit” header of the JWT token being processed. The validation works as follows:
 
 * Successful, if all claims present in the “crit” header list of the JWT token match the lists you have configured.
@@ -309,7 +311,8 @@ You can add a list of acceptable “crit” headers (list of JWT claims), which 
 * Fail with `reason: crit header cannot be empty`, if the JWT token has an empty “crit” header list.
 
 #### Claims
-**Header claim validation policy**: You can select a policy that allows you to validate a claim. The header value is made available to the policy via the `${jwt.header}` message attribute, e.g. this returns jwk claim from header `${jwt.header.jwk}` .If a JWT Header claim policy is defined, the validation of the claim works as follows:
+
+**Header claim validation policy**: You can select a policy that allows you to validate a claim. The header value is made available to the policy via the `${jwt.header}` message attribute, e.g. the following selector returns jwk claim from the header `${jwt.header.jwk}`. If a JWT Header claim policy is defined, the validation of the claim works as follows:
 
 * Successful: The policy will be invoked and displayed in the policy execution path, in [Traffic monitor](/docs/apim_reference/monitor_traffic_events_metrics/).
 * Fail: The failure path from the JWT Verify filter is executed.
