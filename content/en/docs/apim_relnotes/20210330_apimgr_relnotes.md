@@ -16,11 +16,20 @@ Docker deployment is supported on Linux. For a summary of the system requirement
 
 The following new features and enhancements are available in this update.
 
-### Critical header parameter (“crit”)
+### Security enhancements to JWT Sign and Verify filters
 
-A “crit” header was added to the JWT Verify filter in Policy Studio. This allows you to add a “crit” header list to the filter, and the JWT token being processed in the filter is then validated against this list.
+Significant changes have been made to the JWT Sign and Verify filters to comply with PSD2. These filters are now much more closely aligned with the [RFC 7515](https://tools.ietf.org/html/rfc7515) and [RFC 7519](https://tools.ietf.org/html/rfc7519) specifications.
 
-For more information, see [JWT verify filter](/docs/apim_policydev/apigw_polref/integrity_additional/#jwtverify-filter).
+Note that API Gateway still does not support:
+
+* JWS JSON Serialization
+* Nested JWTs
+* Unsecured JWTs
+
+For more information, see:
+
+* [JWT Sign filter](/docs/apim_policydev/apigw_polref/integrity_additional/#jwtsign-filter)
+* [JWT Verify filter](/docs/apim_policydev/apigw_polref/integrity_additional/#jwtverify-filter)
 
 ### Automatic upgrade of projects in Policy Studio
 
