@@ -16,6 +16,26 @@ Docker deployment is supported on Linux. For a summary of the system requirement
 
 The following new features and enhancements are available in this update.
 
+### Updated cipher scheme
+
+The cipher scheme for all encrypted data in the system (such as Database/LDAP passwords, Private keys, and so on) has been enhanced to use PBKDF2 (Password based key derivation function 2) with more secure parameters. This reduces vulnerability to brute force attacks.
+
+This feature has introduced changes related to how sensitive data is managed, how data can be encrypted in custom libraries or Policy Studio script filters, and how data can be migrated between environments, for example, from this release onwards, encrypted KPS data can no longer be transferred directly between environments.
+
+For more information, see [Update cipher scheme](/docs/apim_installation/apigw_upgrade/upgrade_steps_oneversion/#update-cipher-scheme).
+
+### Passphrase policy enforcement
+
+A new passphrase policy and two new endpoints to manage the policy have been introduced to enforce the policy when the node manager or their group's passphrases are changed via:
+
+* managedomin script
+* PUT /deployment/passphrase/nodemanager/{serviceID}
+* PUT /deployment/passphrase/group/{groupID}
+
+With a suitably strict passphrase policy enabled, the user will no longer be able to select extremely weak passphrases, such as `password` or `1234`.
+
+For more information see, [Configure a passphrase policy](/docs/apim_administration/apigtw_admin/manage_user_access/#configure-a-passphrase-policy-for-node-managers-and-api-gateway-groups).
+
 ### Security enhancements to JWT Sign and Verify filters
 
 Significant changes have been made to the JWT Sign and Verify filters to comply with PSD2. These filters are now much more closely aligned with the [RFC 7515](https://tools.ietf.org/html/rfc7515) and [RFC 7519](https://tools.ietf.org/html/rfc7519) specifications.
@@ -49,14 +69,9 @@ In order to be compliant with security best practices, HTTP Strict Transport Sec
 
 For more information, see [Configure HTTP strict transport security](/docs/apim_policydev/apigw_gw_instances/configure_http_strict_transport_security).
 
-### placeholder 2
+### Certification with MySQL 8
 
-placeholder text
-
-For more information, see:
-
-* [some reference 1](/docs/placeholder)
-* [some reference 2](/docs/placeholder)
+The product is now certified as compatible with MySQL 8. For more information see, [Third Party JDBC Drivers](/docs/apim_installation/apigtw_install/metrics_db_install/#add-third-party-jdbc-driver-files).
 
 ### YAML configuration store (Technical preview capability)
 

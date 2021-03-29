@@ -185,11 +185,13 @@ To configure the password policy that applies to admin user passwords, perform t
 
 ## Configure a passphrase policy for node managers and API Gateway groups
 
-To configure a [passphrase policy](/docs/apimgmt_security/c_secgd_bp_intro/#passphrase-policy) that applies to the passphrases of node managers and API Gateway groups perform the following steps as an API Server Administrator:
+You can configure a [passphrase policy](/docs/apimgmt_security/c_secgd_bp_intro/#passphrase-policy) that applies to the passphrases of node managers and API Gateway groups to prevent users to create extremely weak passphrases, such as `password` or `1234`.
 
-1. Call the `GET /topology/passphrasepolicy` method of the [API Gateway API v1.0 Topology API](http://apidocs.axway.com/swagger-ui/index.html?productname=apigateway&productversion=7.7.0&filename=api-gateway-swagger.json#!/Topology_API/get_topology_passphrasepolicy) to get the current passphrase policy. The passphrase policy is disabled by default.
-2. Update the configurations returned from the API call to meet your specifications.
-3. Paste the new configurations into the body of the `PUT /topology/passphrasepolicy` method, in the same [Topology API](http://apidocs.axway.com/swagger-ui/index.html?productname=apigateway&productversion=7.7.0&filename=api-gateway-swagger.json#!/Topology_API/put_topology_passphrasepolicy), to update your passphrase policy.
+The passphrase policy is disabled by default. To enable it, perform the following steps as an API Server Administrator:
+
+1. Call the `GET /topology/passphrasepolicy` method of the [API Gateway API v1.0 Topology API](http://apidocs.axway.com/swagger-ui/index.html?productname=apigateway&productversion=7.7.0&filename=api-gateway-swagger.json#!/Topology_API/get_topology_passphrasepolicy) to get the current passphrase policy.
+2. Update the configuration returned from the API call to meet your specifications.
+3. Paste the new configuration into the body of the [PUT /topology/passphrasepolicy](http://apidocs.axway.com/swagger-ui/index.html?productname=apigateway&productversion=7.7.0&filename=api-gateway-swagger.json#!/Topology_API/put_topology_passphrasepolicy) method to enable your passphrase policy.
 
 The following is a sample body, including all available configurations for updating the passphrase policy:
 
