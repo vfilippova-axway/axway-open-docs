@@ -43,6 +43,12 @@ Rate limit monitors the number of requests that a user can send to API Manager d
 
 For more information, see [Configure the API Manager request rate limiter](/docs/apim_administration/apimgr_admin/api_mgmt_config/#configure-api-manager-request-rate-limiter).
 
+### HTTP strict transport security profile
+
+In order to be compliant with security best practices, HTTP Strict Transport Security (HSTS) support has been added to API Gateway. Profiles can be configured within Policy Studio.
+
+For more information, see [Configure HTTP strict transport security](/docs/apim_policydev/apigw_gw_instances/configure_http_strict_transport_security).
+
 ### placeholder 2
 
 placeholder text
