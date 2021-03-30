@@ -84,9 +84,29 @@ See the [September 2020](/docs/apim_relnotes/20200930_apimgr_relnotes/#yaml-conf
 
 ## Important changes
 
-<!-- It is important, especially when upgrading from an earlier version, to be aware of the following changes in the behavior or operation of the product in this update.. -->
+It is important, especially when upgrading from an earlier version, to be aware of the following changes in the behavior or operation of the product in this update.
 
-There are no major changes in this update.
+### Apache Cassandra security advisory
+
+The version of the `libthrift` library within Cassandra database is vulnerable to *Improper Access Control*. To mitigate this, we recommend you to upgrade the `libthrift` library to version `0.9.3-1` in your [Apache Cassandra installation](/docs/apim_installation/apigtw_install/cassandra_install/).
+
+### Changes in JWT filters
+
+There is now a distinction between JSON Web Signature (JWS), where the payload can be any content type, and a JSON Web Token (JWT), which must be a valid JSON. The system defaults to JWS after you update the product.
+
+Note also that for [JWT verification](/docs/apim_policydev/apigw_polref/integrity_additional/#jwtverify-filter), the previous **None** option for shared-key HMAC signing has now been replaced with a checkbox. If **None** was selected in the old filter, then the checkbox will be disabled after migration, resulting in the same behavior.
+
+### New Cipher schemes for configuration and KPS
+
+New cipher schemes, which are used to encrypt relevant data in configuration and in KPS, have been added to API Gateway. These changes impact how sensitive data is encrypted and managed, how data can be migrated between environments, and how data can be encrypted in custom libraries or policy studio script filters.
+
+For more information on the cipher scheme and Passphrase policy enforcement feature, see [Update cipher scheme](/docs/apim_installation/apigw_upgrade/upgrade_steps_oneversion/#update-cipher-scheme).
+
+### Driver for metrics database
+
+An update was made to the MySQL JDBC driver version to support MySQL8, and the driver is no longer compatible with Maria DB. Therefore, it is not possible to support both Maria DB and MySQL8 databases together. We plan to rectify this restriction in a later update.
+
+For more information, see [Install and configure a metrics database](/docs/apim_installation/apigtw_install/metrics_db_install/#add-third-party-jdbc-driver-files).
 
 ## Deprecated features
 
