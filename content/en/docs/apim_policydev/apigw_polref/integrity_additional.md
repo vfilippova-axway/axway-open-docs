@@ -249,11 +249,11 @@ You must ensure that the key in the selected policy follows these two requiremen
 * It is either in JWK (a single JWK or a JWK set) or PEM (a PEM encoded X.509 certificate or an RSA Public key) format. You can select one of each, or both options.
 * It is placed in the `content.body` message attribute.
 
-If no key is returned or the key is not in the correct format, the filter will fail. If the key cannot verify the JWS signature, the filter will fail.
+If no key is returned or the key is not in the correct format, the filter fails. If the key cannot verify the JWS signature, the filter fails.
 
-Before the policy is called, two message attributes are created containing the JWS header and payload, `jwt.header` and `jwt.body`, respectively. In case of **detached signature** the `jwt.body` is not created, because payload must be provided separately in this case. You can use these attributes in the discovery policy to locate the correct key. 
+Before the policy is called, two message attributes are created containing the JWS header and payload, `jwt.header` and `jwt.body`, respectively. If a detached signature occurs, the payload must be provided separately, so the `jwt.body` is not created.
 
-For example, you can use:
+You can use these attributes in the discovery policy to locate the correct key. For example, you can use:
 
 * `${jwt.header.jku}` with the [Connect to URL](/docs/apim_policydev/apigw_polref/routing_common/#connect-to-url-filter) filter to retrieve a JWK from an external source.
 * `${jwt.header.x5u}` to retrieve a PEM encoded certificate from an external source.
@@ -312,11 +312,11 @@ You can add a list of acceptable “crit” headers (list of JWT claims), which 
 
 #### Claims
 
-**Header claim validation policy**: You can select a policy that allows you to validate a claim. The header value is made available to the policy via the `${jwt.header}` message attribute, e.g. the following selector returns jwk claim from the header `${jwt.header.jwk}`. If a JWT Header claim policy is defined, the validation of the claim works as follows:
+**Header claim validation policy**: You can select a policy that allows you to validate a claim. The header value is made available to the policy via the `${jwt.header}` message attribute. For example, the following selector returns a `jwk` claim from the header: `${jwt.header.jwk}`. If a JWT Header claim policy is defined, the validation of the claim works as follows:
 
-* Successful: The policy will be invoked and displayed in the policy execution path, in [Traffic monitor](/docs/apim_reference/monitor_traffic_events_metrics/).
+* Successful: The policy is invoked and displayed in the policy execution path, in [Traffic monitor](/docs/apim_reference/monitor_traffic_events_metrics/).
 * Fail: The failure path from the JWT Verify filter is executed.
-* 
+
 **Type & Content Type Headers**: You can add a list of acceptable "typ" headers and a list of acceptable "cty" headers. The headers will be validated against the "typ" and "cty" header values present in the JWT being processed.
 
 The list of acceptable headers for either "typ" or "cty" must entirely match an incoming JWT header value. For example, an incoming token with a content type `json` will not match an `application/json` string in the accepted list.
@@ -348,7 +348,7 @@ For more information about detached JWS, see [Appendix F of JWS RFC 7515](https:
 
 {{< alert title="Note" color="primary" >}}When using detached signatures, the detached payload must not be base64 encoded. You must add a `"b64: false"` header claim to the JWS token to enforce this behavior. See [JWS Unencoded Payload Option RFC 7797](https://tools.ietf.org/html/rfc7797) for more information.{{< /alert >}}
 
-**Payload claim validation policy**: Select a policy to perform additional validation of the token payload. The payload value is made available to the policy via the `${jwt.body}` message attribute. In case of **detached signature** the `${jwt.body}` is not created and attribute with the location of payload, which defaults to `${content.body}`, should be used in **payload claim validation policy**.
+**Payload claim validation policy**: Select a policy to perform additional validation of the token payload. The payload value is made available to the policy via the `${jwt.body}` message attribute. If a detached signature occurs, the `${jwt.body}` is not created and the attribute with the location of the payload, which defaults to `${content.body}`, should be used in **payload claim validation policy**.
 
 ### Additional JWT verification steps
 
