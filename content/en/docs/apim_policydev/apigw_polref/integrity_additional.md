@@ -204,7 +204,7 @@ The message attribute names for **Generated signature** and **Detach signature p
 
 ## JWT Verify filter
 
-You can use the **JWT Verify** filter to verify a signed JSON Web Token (JWT) with the token payload. Upon successful verification, the **JWT Verify** filter removes the headers and signature of the incoming signed JWT and outputs the original JWT payload. For example, when you verify the following signed JWT payload input:
+You can use the **JWT Verify** filter to verify a signed JSON Web Token (JWT) with the token payload. Upon successful verification, the **JWT Verify** filter stores the original header and payload in message attributes, so they can be available in the subsequent filters and in callback policies. For example, when you verify the following signed JWT payload input:
 
 ```
 eyJhbGciOiJSUzI1NiJ9
@@ -249,17 +249,17 @@ You must ensure that the key in the selected policy follows these two requiremen
 * It is either in JWK (a single JWK or a JWK set) or PEM (a PEM encoded X.509 certificate or an RSA Public key) format. You can select one of each, or both options.
 * It is placed in the `content.body` message attribute.
 
-If no key is returned or the key is not in the correct format, the filter will fail. If the key cannot verify the JWS signature, the filter will fail.
+If no key is returned or the key is not in the correct format, the filter fails. If the key cannot verify the JWS signature, the filter fails.
 
-Before the policy is called, two message attributes are created containing the JWS header and payload, `jws.header` and `jws.payload`, respectively. You can use these attributes in the discovery policy to locate the correct key.
+Before the policy is called, two message attributes are created containing the JWS header and payload, `jwt.header` and `jwt.body`, respectively. If a detached signature is configured, the `jwt.body` is not created, and the payload must be provided separately.
 
-For example, you can use:
+You can use these attributes in the discovery policy to locate the correct key. For example, you can use:
 
-* `${jws.header.jku}` with the [Connect to URL](/docs/apim_policydev/apigw_polref/routing_common/#connect-to-url-filter) filter to retrieve a JWK from an external source.
-* `${jws.header.x5u}` to retrieve a PEM encoded certificate from an external source.
-* `${jws.payload}` to identify the subject of the JWS, and retrieve a key from a data source, such as the KPS.
+* `${jwt.header.jku}` with the [Connect to URL](/docs/apim_policydev/apigw_polref/routing_common/#connect-to-url-filter) filter to retrieve a JWK from an external source.
+* `${jwt.header.x5u}` to retrieve a PEM encoded certificate from an external source.
+* `${jwt.body}` to identify the subject of the JWS, and retrieve a key from a data source, such as the KPS.
 
-Other useful headers for identifying the key are: `${jws.header.kid}` and `${jws.header.jwk}`.
+Other useful headers for identifying the key are: `${jwt.header.kid}` and `${jwt.header.jwk}`.
 
 #### Select static key or selector
 
@@ -288,7 +288,7 @@ You can configure the following optional setting in the **JWK from external sour
 
 **JSON web key**: You can verify signed tokens using a selector expression containing the value of a `JSON Web Key (JWK)`. The return type of the selector expression must be of type String.
 
-#### Algorithms
+#### Accepted Algorithms
 
 This option shows a list of **Accepted Algorithms**, which is populated with all the algorithms available for JWT signing. It requires that at least one algorithm is selected. The selected algorithms will be validated against the "alg" header of the JWT token being processed. If none are selected, the following message is displayed, **You must enter a value for 'Accepted Algorithms'.**
 
@@ -299,14 +299,25 @@ The runtime validation works as follows:
 * Fail with `reason: The JWS token is not correct`, if there is no "alg" value in the incoming JWT.
 * Fail with `reason: Alg received not supported in the 'Accepted Algorithms' list defined in the JWT verification filter`, if the "alg" value of the incoming JWT is not selected from the list of accepted algorithms.
 
-**Critical Headers**: You can add a list of acceptable “crit” headers (list of JWT claims), which will be validated against the list of claims present in the “crit” header of the JWT token being processed. The validation works as follows:
+### Header Validation
+
+#### Critical Headers
+
+You can add a list of acceptable “crit” headers (list of JWT claims), which will be validated against the list of claims present in the “crit” header of the JWT token being processed. The validation works as follows:
 
 * Successful, if all claims present in the “crit” header list of the JWT token match the lists you have configured.
 * Fail with `reason: unknown header`, if any of the claims present is the JWT token do not match the lists you have configured.
 * Fail with `reason: unknown header`, if the JWT token has a crit header list specified and you did not configured any list for your JWT verify filter.
 * Fail with `reason: crit header cannot be empty`, if the JWT token has an empty “crit” header list.
 
-**Type & Content Type Claims**: You can add a list of acceptable "typ" headers and a list of acceptable "cty" headers. The headers will be validated against the "typ" and "cty" header values present in the JWT being processed.
+#### Claims
+
+**Header claim validation policy**: You can select a policy that allows you to validate a claim. The header value is made available to the policy via the `${jwt.header}` message attribute. For example, the following selector returns a `jwk` claim from the header: `${jwt.header.jwk}`. If a JWT Header claim policy is defined, the validation of the claim works as follows:
+
+* Successful: The policy is invoked and displayed in the policy execution path, in [Traffic monitor](/docs/apim_reference/monitor_traffic_events_metrics/).
+* Fail: The failure path from the JWT Verify filter is executed.
+
+**Type & Content Type Headers**: You can add a list of acceptable "typ" headers and a list of acceptable "cty" headers. The headers will be validated against the "typ" and "cty" header values present in the JWT being processed.
 
 The list of acceptable headers for either "typ" or "cty" must entirely match an incoming JWT header value. For example, an incoming token with a content type `json` will not match an `application/json` string in the accepted list.
 
@@ -316,11 +327,6 @@ The runtime validation works as follows:
 * Successful, if the acceptable "typ" or "cty" lists are empty.
 * Fail with `reason: unknown header`, if the "typ" or "cty" value of the incoming JWT is not present in the accepted list.
 * Fail with `reason: typ/cty header cannot be empty`, if the "typ" or "cty" value of the incoming JWT is empty, and a list is provided.
-
-**Claims**: You can select a policy that allows you to validate a claim. If a JWT Header claim policy is defined, the validation of the claim works as follows:
-
-* Successful: The policy will be invoked and displayed in the policy execution path, in [Traffic monitor](/docs/apim_reference/monitor_traffic_events_metrics/).
-* Fail: The failure path from the JWT Verify filter is executed.
 
 ### Advanced
 
@@ -342,7 +348,7 @@ For more information about detached JWS, see [Appendix F of JWS RFC 7515](https:
 
 {{< alert title="Note" color="primary" >}}When using detached signatures, the detached payload must not be base64 encoded. You must add a `"b64: false"` header claim to the JWS token to enforce this behavior. See [JWS Unencoded Payload Option RFC 7797](https://tools.ietf.org/html/rfc7797) for more information.{{< /alert >}}
 
-**Payload claim validation policy**: Select a policy to perform additional validation of the token payload. The payload value is made available to the policy via the `${jwt.body}` message attribute, which is created based on the value of the "cty" header claim.
+**Validate payload claims**: Select a policy to perform additional validation of the token payload. The payload value is made available to the policy via the `${jwt.body}` message attribute. If a detached signature is configured, the `${jwt.body}` is not created and the attribute with the location of the payload, which defaults to `${content.body}`, should be used instead.
 
 ### Additional JWT verification steps
 
