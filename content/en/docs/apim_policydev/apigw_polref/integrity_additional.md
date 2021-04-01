@@ -251,7 +251,7 @@ You must ensure that the key in the selected policy follows these two requiremen
 
 If no key is returned or the key is not in the correct format, the filter fails. If the key cannot verify the JWS signature, the filter fails.
 
-Before the policy is called, two message attributes are created containing the JWS header and payload, `jwt.header` and `jwt.body`, respectively. If a detached signature occurs, the payload must be provided separately, so the `jwt.body` is not created.
+Before the policy is called, two message attributes are created containing the JWS header and payload, `jwt.header` and `jwt.body`, respectively. If a detached signature is configured, the `jwt.body` is not created, and the payload must be provided separately.
 
 You can use these attributes in the discovery policy to locate the correct key. For example, you can use:
 
@@ -348,7 +348,7 @@ For more information about detached JWS, see [Appendix F of JWS RFC 7515](https:
 
 {{< alert title="Note" color="primary" >}}When using detached signatures, the detached payload must not be base64 encoded. You must add a `"b64: false"` header claim to the JWS token to enforce this behavior. See [JWS Unencoded Payload Option RFC 7797](https://tools.ietf.org/html/rfc7797) for more information.{{< /alert >}}
 
-**Payload claim validation policy**: Select a policy to perform additional validation of the token payload. The payload value is made available to the policy via the `${jwt.body}` message attribute. If a detached signature occurs, the `${jwt.body}` is not created and the attribute with the location of the payload, which defaults to `${content.body}`, should be used in **payload claim validation policy**.
+**Validate payload claims**: Select a policy to perform additional validation of the token payload. The payload value is made available to the policy via the `${jwt.body}` message attribute. If a detached signature is configured, the `${jwt.body}` is not created and the attribute with the location of the payload, which defaults to `${content.body}`, should be used instead.
 
 ### Additional JWT verification steps
 
