@@ -12,6 +12,8 @@ The software installation is available on Linux. For more details on supported p
 
 Docker deployment is supported on Linux. For a summary of the system requirements for a Docker deployment, see [Set up Docker environment](/docs/apim_installation/apigw_containers/docker_scripts_prereqs/).
 
+{{< alert title="Note" color="primary" >}}API Gateway and API Manager updates are cumulative, comprising new features and changes delivered in previous updates, unless specifically indicated otherwise in the Release notes.{{< /alert >}}
+
 ## New features and enhancements
 
 The following new features and enhancements are available in this update.
@@ -110,17 +112,21 @@ For more information, see [Install and configure a metrics database](/docs/apim_
 
 ## Deprecated features
 
-<!-- As part of our software development life cycle we constantly review our API Management offering. In this update, the following capabilities have been deprecated. -->
+As part of our software development life cycle we constantly review our API Management offering. In this update, the following capabilities have been deprecated:
 
 ### Antivirus filters
 
-In the [January 2020](/docs/apim_relnotes/20200130_apimgr_relnotes/) update, we have announced the deprecation of all the Antivirus filters in API Gateway. This is a reminder that in July 2021 we will remove the Antivirus filters from API Gateway. So, we recommend you to use the API Gateway's ICAP capability, which allows the gateway to integrate with ICAP capable external virus scanners.
+In the [January 2020](/docs/apim_relnotes/20200130_apimgr_relnotes/) update, we announced the deprecation of all the Antivirus filters in API Gateway. This is a reminder that in July 2021 we will remove the Antivirus filters from API Gateway. So, we recommend you to use the API Gateway's ICAP capability, which allows the gateway to integrate with ICAP capable external virus scanners.
 
-### Centos OS ??
+### End of Support notices
 
-placeholder ??
+The following items are end of support (EOS) now:
 
-## Removed features
+* API Gateway and API Manager [7.7 January 2020 update](/docs/apim_relnotes/20200130_apimgr_relnotes/).
+* Internet Explorer 11 and earlier versions are no longer supported. Microsoft Edge is recommended.
+* MySQL 5.6.
+
+### Removed features
 
 <!-- To stay current and align our offerings with customer demand and best practices, Axway might discontinue support for some capabilities. As part of this review, the following features have been removed: -->
 
@@ -137,7 +143,7 @@ This version of API Gateway and API Manager includes:
 
 | Internal ID | Case ID            | Cve Identifier                               | Description      |
 | ----------- | ------------------ | -------------------------------------------- | ---              |
-| RDAPI-23337 | | CVE-2018-1320 CVE-2019-0205 | **Issue**: Apache Cassandra includes `libthrift` library which has known vulnerabilities. **Resolution**: New installations, which opt to install Cassandra from the API Gateway installation packages, include the upgraded `libthrift` 0.9.3-1 library that addresses these two known vulnerabilities. Existing customers are advised to upgrade the `libthrift` library to 0.9.3-1 in their Cassandra environments.|
+|RDAPI-23337 | | CVE-2018-1320 CVE-2019-0205 | **Issue**: Apache Cassandra includes `libthrift` library which has known vulnerabilities. **Resolution**: New installations, which opt to install Cassandra from the API Gateway installation packages, include the upgraded `libthrift` 0.9.3-1 library that addresses these two known vulnerabilities. Existing customers are advised to upgrade the `libthrift` library to 0.9.3-1 in their Cassandra environments.|
 |RDAPI-22247|01207324||**Issue**: Newly created Static Content Providers enable "Allow directory listings" by default. **Resolution**: Newly created Static Content Providers "Allow directory listings" is disabled by default.|
 |RDAPI-22559|01215211  01215001||**Issue**: Missing protection mechanisms on binaries. **Resolution**: API Gateway native code and customized libraries are now built with protection mechanisms in place. Because of the compiler used, protection for stack canaries can only be achieved using `-fstack-protector` to avoid performance penalties. As a consequence, some libraries are reported as "No RELRO" or "No canary found". The following libraries under the `<INSTALL_DIR>/apigateway/Linux.x86_64/lib` folder are delivered as-is (not generated as part of the API Gateway solution): libdb-4.3.so, liblnxfv.so.4, liblua-5.1.so, libobaccess.so, libpcap.so.0.9.8, libsigar-amd64-linux.so, libsqlite3.so, libstdc++.so.5.0.7, libz.so.1.2.5. For the same reason, the following binaries under under the `<INSTALL_DIR>/apigateway/Linux.x86_64/bin` folder are delivered as-is: wkhtmltopdf/libcrypto.so.1.0.0, wkhtmltopdf/libssl.so.1.0.0, wkhtmltopdf/wkhtmltopdfRPATH for vshell is intended and required.|
 |RDAPI-22708|01217185||**Issue**: API Manager does not provide a session timeout to stop users to keep a session open indefinitely. Only Idle Session timeout is provided. **Resolution**: API Manager now provides a Session Timeout alongside the Idle Session timeout.|

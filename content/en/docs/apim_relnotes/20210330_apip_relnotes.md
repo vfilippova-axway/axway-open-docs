@@ -8,6 +8,8 @@ date: 2021-01-06
 
 API Portal provides an API consumer-facing interface that you can customize to match your corporate brand. API Portal is a layered product linked to API Manager, and requires both API Manager and API Gateway. For more information, see the API Gateway and API Manager documentation.
 
+{{< alert title="Note" color="primary" >}}API Portal updates are cumulative, comprising new features and changes delivered in previous updates, unless specifically indicated otherwise in the Release notes.{{< /alert >}}
+
 ## Installation
 
 API Portal is available as a software installation or a virtualized deployment in a Docker container. For more information, see the following options:
@@ -51,13 +53,14 @@ This update has the following limitations:
 
 <!-- It is important, especially when upgrading from an earlier version, to be aware of the following changes in the behavior or operation of the product in this update.. -->
 
-* Internet Explorer 11 and earlier versions are no longer supported. Microsoft Edge is recommended.
+There are no major changes in this update.
 
 ## Deprecated features
 
-<!-- As part of our software development life cycle we constantly review our API Management offering. In this update, the following capabilities have been deprecated. -->
+As part of our software development life cycle we constantly review our API Management offering. In this update, the following capabilities have been deprecated:
 
-No features were deprecated in this release.
+* Internet Explorer 11 and earlier versions are no longer supported. Microsoft Edge is recommended.
+* API Portal [7.7 January 2020 update](/docs/apim_relnotes/20200130_apip_relnotes/) is end of support (EOS) now
 
 ## Removed features
 
