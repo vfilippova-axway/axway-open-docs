@@ -97,6 +97,9 @@ managedomain -i --sign_with_external_ca
 
 This command generates the Admin Node Manager private key and the CSR for the certificate. It then prompts you to take your CSR file to your external CA and return with the signed certificate.
 
+{{< alert title="Note" color="primary" >}}When external CA signs the certificate its extensions, such as Key Usage, must be copied from the CSR request. In openssl the option 'copy_extensions=copy' must be specified for this in the configuration file.
+Subject Distinguished Name (DN) of the certificate must be the same as in CSR. It can be achieved in openssl with -preserveDN option https://www.openssl.org/docs/manmaster/man1/openssl-ca.html. {{< /alert >}}
+
 When you have the signed certificate, use the following command to submit the certificate and finish creating the Admin Node Manager configuration:
 
 ```
@@ -186,6 +189,9 @@ managedomain -a --sign_with_external_ca --anm_host my_anm.comm
 
 This command performs similar steps to adding the first Admin Node Manager to the domain and signing with an external CA.
 
+{{< alert title="Note" color="primary" >}}When external CA signs the certificate its extensions, such as Key Usage, must be copied from the CSR request. In openssl the option 'copy_extensions=copy' must be specified for this in the configuration file.
+Subject Distinguished Name (DN) of the certificate must be the same as in CSR. It can be achieved in openssl with -preserveDN option https://www.openssl.org/docs/manmaster/man1/openssl-ca.html. {{< /alert >}}
+
 When you have the signed certificate, use the following command to submit the certificate and finish creating the Node Manager configuration:
 
 ```
@@ -227,6 +233,9 @@ managedomain -c -n APIGateway1 -g Group1 --sign_with_external_ca
 ```
 
 This command performs similar steps to adding the first Admin Node Manager to the domain and signing with an external CA.
+
+{{< alert title="Note" color="primary" >}}When external CA signs the certificate its extensions, such as Key Usage, must be copied from the CSR request. In openssl the option 'copy_extensions=copy' must be specified for this in the configuration file.
+Subject Distinguished Name (DN) of the certificate must be the same as in CSR. It can be achieved in openssl with -preserveDN option https://www.openssl.org/docs/manmaster/man1/openssl-ca.html. {{< /alert >}}
 
 When you have the signed certificate, use the following command to submit the certificate and finish creating the API Gateway configuration:
 
@@ -307,6 +316,9 @@ managedomain --edit_host --host host1.com --sign_with_external_ca --is_admin
 
 In both cases, this command performs similar steps to adding the first Admin Node Manager to the domain and signing with an external CA.
 
+{{< alert title="Note" color="primary" >}}When external CA signs the certificate its extensions, such as Key Usage, must be copied from the CSR request. In openssl the option 'copy_extensions=copy' must be specified for this in the configuration file.
+Subject Distinguished Name (DN) of the certificate must be the same as in CSR. It can be achieved in openssl with -preserveDN option https://www.openssl.org/docs/manmaster/man1/openssl-ca.html. {{< /alert >}}
+
 When you have the signed certificate, use the following command to submit the certificate and finish updating the Node Manager configuration:
 
 ```
@@ -360,6 +372,9 @@ managedomain --regen_certs --sign_with_external_ca
 ```
 
 This command generates the private keys for the Node Manager and API Gateway instances. You are prompted to take the CSR files to your CA and return with the signed certificates.
+
+{{< alert title="Note" color="primary" >}}When external CA signs the certificate its extensions, such as Key Usage, must be copied from the CSR request. In openssl the option 'copy_extensions=copy' must be specified for this in the configuration file.
+Subject Distinguished Name (DN) of the certificate must be the same as in CSR. It can be achieved in openssl with -preserveDN option https://www.openssl.org/docs/manmaster/man1/openssl-ca.html. {{< /alert >}}
 
 When you have the signed certificates, run the following command for each certificate:
 
